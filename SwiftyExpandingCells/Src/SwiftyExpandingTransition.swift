@@ -36,12 +36,13 @@ class SwiftyExpandingTransition: NSObject, UIViewControllerAnimatedTransitioning
         var snapShot = UIImage()
         let bounds = CGRectMake(0, 0, sourceView.bounds.size.width, sourceView.bounds.size.height)
         
-        UIGraphicsBeginImageContextWithOptions(sourceView.bounds.size, true, 0)
-        
         if self.operation == UINavigationControllerOperation.Push {
+            UIGraphicsBeginImageContextWithOptions(sourceView.bounds.size, true, 0)
+            
             sourceView.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
             
             snapShot = UIGraphicsGetImageFromCurrentImageContext()
+            
             UIGraphicsEndImageContext()
             
             let tempImageRef = snapShot.CGImage!
@@ -77,6 +78,8 @@ class SwiftyExpandingTransition: NSObject, UIViewControllerAnimatedTransitioning
                 self.imageViewBottom = UIImageView(image: UIImage(CGImage: bottomImageRef!, scale: snapShot.scale, orientation: UIImageOrientation.Up))
             }
         }
+        
+        
         
         var startFrameTop = self.imageViewTop!.frame
         var endFrameTop = startFrameTop
