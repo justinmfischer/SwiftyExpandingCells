@@ -28,7 +28,7 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let brand = BrandManager.sharedInstance.brands[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCellWithIdentifier("brand") {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "brand") {
             cell.textLabel?.text = brand.iconText
             cell.detailTextLabel?.text = brand.name
             
@@ -39,7 +39,7 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedCellFrame = tableView.convertRect(tableView.cellForRowAtIndexPath(indexPath)!.frame, toView: tableView.superview)
+        self.selectedCellFrame = tableView.convert(tableView.cellForRow(at: indexPath)!.frame, to: tableView.superview)
         self.selectedBrand = BrandManager.sharedInstance.brands[indexPath.row]
         
         self.performSegueWithIdentifier(.DetailVC , sender: nil)
@@ -48,7 +48,7 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifierForSegue(segue) {
             case .DetailVC:
-                let vc = segue.destinationViewController as! DetailVC
+                let vc = segue.destination as! DetailVC
                     vc.brand = self.selectedBrand
                 
                 self.navigationController?.delegate = self
@@ -57,16 +57,16 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
 
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if operation == UINavigationControllerOperation.Push {
-            transtition.operation = UINavigationControllerOperation.Push
+        if operation == UINavigationControllerOperation.push {
+            transtition.operation = UINavigationControllerOperation.push
             transtition.duration = 0.40
             transtition.selectedCellFrame = self.selectedCellFrame
             
             return transtition
         }
         
-        if operation == UINavigationControllerOperation.Pop {
-            transtition.operation = UINavigationControllerOperation.Pop
+        if operation == UINavigationControllerOperation.pop {
+            transtition.operation = UINavigationControllerOperation.pop
             transtition.duration = 0.20
             
             return transtition

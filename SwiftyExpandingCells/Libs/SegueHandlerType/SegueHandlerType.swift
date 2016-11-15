@@ -54,23 +54,23 @@ public extension SegueHandlerType where Self: ViewController, SegueIdentifier.Ra
         method that takes in a `SegueIdentifier` enum parameter rather than a
         `String`.
     */
-    func performSegueWithIdentifier(segueIdentifier: SegueIdentifier, sender: AnyObject?) {
-        performSegueWithIdentifier(segueIdentifier.rawValue, sender: sender)
+    func performSegueWithIdentifier(_ segueIdentifier: SegueIdentifier, sender: AnyObject?) {
+        performSegue(withIdentifier: segueIdentifier.rawValue, sender: sender)
     }
 
     /**
         A convenience method to map a `StoryboardSegue` to the  segue identifier
         enum that it represents.
     */
-    func segueIdentifierForSegue(segue: StoryboardSegue) -> SegueIdentifier {
+    func segueIdentifierForSegue(_ segue: StoryboardSegue) -> SegueIdentifier {
         /*
             Map the segue identifier's string to an enum. It's a programmer error
             if a segue identifier string that's provided doesn't map to one of the
             raw representable values (most likely enum cases).
         */
         guard let identifier = segue.identifier,
-                  segueIdentifier = SegueIdentifier(rawValue: identifier) else {
-            fatalError("Couldn't handle segue identifier \(segue.identifier) for view controller of type \(self.dynamicType).")
+                  let segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+            fatalError("Couldn't handle segue identifier \(segue.identifier) for view controller of type \(type(of: self)).")
         }
 
         return segueIdentifier
