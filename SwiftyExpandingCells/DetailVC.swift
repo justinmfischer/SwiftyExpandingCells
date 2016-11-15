@@ -20,7 +20,7 @@ class DetailVC: UIViewController {
     }
     
     func setup() {
-        self.view.frame.origin.y = UIApplication.sharedApplication().statusBarFrame.size.height
+        self.view.frame.origin.y = UIApplication.shared.statusBarFrame.size.height
         
         if let brand = self.brand {
             self.title = brand.name
