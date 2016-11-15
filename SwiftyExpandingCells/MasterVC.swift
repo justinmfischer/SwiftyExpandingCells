@@ -10,7 +10,7 @@ import UIKit
 
 class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHandlerType {
     let transtition = SwiftyExpandingTransition()
-    var selectedCellFrame = CGRectZero
+    var selectedCellFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var selectedBrand: Brand?
     
     enum SegueIdentifier: String {
@@ -21,11 +21,11 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
         super.viewDidLoad()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BrandManager.sharedInstance.brands.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let brand = BrandManager.sharedInstance.brands[indexPath.row]
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("brand") {
@@ -38,14 +38,14 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
         return UITableViewCell()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedCellFrame = tableView.convertRect(tableView.cellForRowAtIndexPath(indexPath)!.frame, toView: tableView.superview)
         self.selectedBrand = BrandManager.sharedInstance.brands[indexPath.row]
         
         self.performSegueWithIdentifier(.DetailVC , sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifierForSegue(segue) {
             case .DetailVC:
                 let vc = segue.destinationViewController as! DetailVC
@@ -55,7 +55,7 @@ class MasterVC: UITableViewController, UINavigationControllerDelegate, SegueHand
         }
     }
 
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if operation == UINavigationControllerOperation.Push {
             transtition.operation = UINavigationControllerOperation.Push
