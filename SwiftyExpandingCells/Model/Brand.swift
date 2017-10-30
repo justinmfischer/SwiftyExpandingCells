@@ -24,12 +24,12 @@ class BrandManager {
     var brands = [Brand]()
     
     init() {
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.Apple), name: "Apple inc."))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.Github), name: "Github"))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.Slack), name: "Slack"))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.Bitbucket), name: "Bit Bucket"))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.Reddit), name: "Reddit"))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.HackerNews), name: "Hacker News"))
-        self.brands.append(Brand(iconText: String.fontAwesomeIconWithName(FontAwesome.StackExchange), name: "Stack Exchange"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.apple), name: "Apple inc."))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.github), name: "Github"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.slack), name: "Slack"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.bitbucket), name: "Bit Bucket"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.reddit), name: "Reddit"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.hackerNews), name: "Hacker News"))
+        self.brands.append(Brand(iconText: String.fontAwesomeIcon(name: FontAwesome.stackExchange), name: "Stack Exchange"))
     }
 }

@@ -55,7 +55,7 @@ public extension SegueHandlerType where Self: ViewController, SegueIdentifier.Ra
         `String`.
     */
     func performSegueWithIdentifier(segueIdentifier: SegueIdentifier, sender: AnyObject?) {
-        performSegueWithIdentifier(segueIdentifier.rawValue, sender: sender)
+        performSegue(withIdentifier: segueIdentifier.rawValue, sender: sender)
     }
 
     /**
@@ -69,8 +69,8 @@ public extension SegueHandlerType where Self: ViewController, SegueIdentifier.Ra
             raw representable values (most likely enum cases).
         */
         guard let identifier = segue.identifier,
-                  segueIdentifier = SegueIdentifier(rawValue: identifier) else {
-            fatalError("Couldn't handle segue identifier \(segue.identifier) for view controller of type \(self.dynamicType).")
+            let segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+                fatalError("Couldn't handle segue identifier \(segue.identifier) for view controller of type \(type(of: self)).")
         }
 
         return segueIdentifier
