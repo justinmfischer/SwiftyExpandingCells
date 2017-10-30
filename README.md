@@ -1,4 +1,4 @@
-# Swifty Expanding Cells
+# Swifty Expanding Cells - Swift 4 Xcode 9
 
 ![](Screenshot.gif)
 
